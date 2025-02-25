@@ -41,38 +41,42 @@ body {
 
 /* Product Grid */
 .product-grid {
-    display:flex;
-    flex-direction: column;
-    width: 100vw;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+    gap: 20px; /* Space between cards */
     justify-content: center;
+    padding: 20px;
 }
 .product-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 50px;
-    /* background-color: pink; */
-    /* justify-content: space-between; */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
+    gap: 20px;
     padding: 20px;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
+    width: 90%;
+    margin: 0 auto; /* Centers the grid */
+    align-items: stretch; /* Ensures equal card height */
 }
+
 
 /* Product Card */
 .product-card {
-    flex: 0 0 calc(33.33% - 20px); /* Adjust width for 3 cards per row with 20px gap */
-    max-width: calc(26.33% - 20px); /* Adjust max-width for 3 cards per row with 20px gap */
-    margin-bottom: 20px;
-    padding: 20px;
+    max-width: 250px;  /* Adjust width */
+    aspect-ratio: 3 / 4; /* Keeps a 3:4 ratio */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
     background-color: #fff;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 10px;
     text-align: center;
-    position: relative;
-    
-    gap: 20px;
+    overflow: hidden;
 }
+
+
+
+
 
 /* Pseudo-classes - Hover effect on product button */
 .product-card:hover {
@@ -91,10 +95,25 @@ body {
     font-size: 1.2rem;
     margin-bottom: 10px;
 }
-
-.product-image {
-    max-width: 100%;
-    height: 200px; /* Adjust height for better consistency */
+.product-image-container {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.product-card img {
+    width: 100%;
+    height: auto;
+    max-height: 60%; /* Adjust as needed */
+    object-fit: cover; /* Ensures it fills the space */
+    border-radius: 8px;
+}
+.product-info {
+    padding: 10px;
+    background: white;
+    width: 100%;
 }
 
 .product-button {
