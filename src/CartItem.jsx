@@ -1,30 +1,26 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { incrementQuantity, decrementQuantity, removeItem } from "../CartSlice";
+import { incrementQuantity, decrementQuantity, removeItem } from "./CartSlice"; 
 
 const CartItem = ({ onContinueShopping }) => {
   const cartItems = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
 
-  // Calculate the subtotal for each item
   const calculateTotalCost = (item) => {
-    const price = parseFloat(item.cost.substring(1)); // Extract numeric value from "$X.XX"
+    const price = parseFloat(item.cost.substring(1)); 
     return (item.quantity * price).toFixed(2);
   };
 
-  // Calculate the total cost of all cart items
   const calculateTotalAmount = () => {
     return cartItems
       .reduce((total, item) => total + parseFloat(calculateTotalCost(item)), 0)
       .toFixed(2);
   };
 
-  // Handle increment
   const handleIncrement = (name) => {
     dispatch(incrementQuantity({ name }));
   };
 
-  // Handle decrement (removes item if quantity drops to 0)
   const handleDecrement = (name, quantity) => {
     if (quantity > 1) {
       dispatch(decrementQuantity({ name }));
@@ -33,12 +29,10 @@ const CartItem = ({ onContinueShopping }) => {
     }
   };
 
-  // Remove an item from the cart
   const handleRemove = (name) => {
     dispatch(removeItem(name));
   };
 
-  // Alert for future checkout feature
   const handleCheckoutShopping = () => {
     alert("Functionality to be added for future reference");
   };
